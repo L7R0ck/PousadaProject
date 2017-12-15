@@ -5,6 +5,7 @@
  */
 package pousadaprojectjava;
 import java.time.LocalDate;
+import static java.time.temporal.ChronoUnit.DAYS;
 
 /**
  *
@@ -20,7 +21,7 @@ public class Aluguel {
     private int idAluguel;
     private Cliente cliente;
     private Quarto quarto;
-    private int dias;
+    private long dias;
     private LocalDate checkIn;
     private LocalDate checkOut;
 
@@ -30,6 +31,7 @@ public class Aluguel {
         this.quarto = quarto;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
+        this.dias = DAYS.between(checkIn, checkOut);
     }
 
     public boolean estaOcupadoNaData(CollectionAlugueis colAlugueis) {
@@ -38,10 +40,6 @@ public class Aluguel {
                 return true;
         }
         return false;
-    }
-    public int diasTotal() {
-        //this.dias
-        return dias;
     }
 
     public int getIdAluguel() {
